@@ -38,7 +38,11 @@ class MyRecyclerViewAdapter(var data: MutableList<Contact>) :
     }
 
 
-    override fun onBindViewHolder(holder: ContactViewHolder1, position: Int, payloads: MutableList<Any>) {
+    override fun onBindViewHolder(
+        holder: ContactViewHolder1,
+        position: Int,
+        payloads: MutableList<Any>
+    ) {
         if (payloads.isEmpty())
             super.onBindViewHolder(holder, position, payloads)
         else {
@@ -71,6 +75,7 @@ class MyRecyclerViewAdapter(var data: MutableList<Contact>) :
 
     fun onNewData(newData: ArrayList<Contact>) {
         val diffResult = DiffUtil.calculateDiff(MyDiffUtilCallback(newData, data))
+        //update data
         diffResult.dispatchUpdatesTo(this)
         this.data.clear()
         this.data.addAll(newData)
